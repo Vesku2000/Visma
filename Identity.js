@@ -16,13 +16,14 @@ class IdentityApp {
             throw new Error('Invalid URI scheme');
         }
 
-        // Check the path
+        // Check the path that it is correct 
         const path = this.uri.split('?')[0].replace('visma-identity://', '');
+        //if path is not correct alert error
         if (!pathRegex.test(path)) {
             throw new Error('Invalid path');
         }
 
-        // Check the parameters based on the path
+        // Check which path need to use
         const parameters = this.uri.split('?')[1];
         switch (path) {
             case 'login':
