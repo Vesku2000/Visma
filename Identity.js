@@ -100,9 +100,15 @@ let uri = '';
                 `;
             }
 
-function changeURI(newUri) {
-    uri = newUri;
-    identity = new IdentityApp(uri);
-    identity.parseURI();
-    updateDisplay();
-}
+            function changeURI(newUri) {
+                uri = newUri;
+                identity = new IdentityApp(uri);
+            
+                try {
+                    identity.parseURI();
+                    updateDisplay();
+                } catch (error) {
+                    alert("Invalid URI: " + error);
+                }
+            }
+            

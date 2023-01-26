@@ -24,5 +24,9 @@
                 data-uri="visma-identity://login?source=severa" 
                 onclick="changeURI('visma-identity://login?source=severa')">Login (Severa)</button>
         </div>
+        <div>
+            <input type="text" id="customURI" placeholder="Enter custom URI">
+            <button class="button" onclick="changeURI(document.getElementById('customURI').value)">Submit</button>
+        </div>
     </body>
 </html>
