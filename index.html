@@ -3,26 +3,21 @@
     <head>
         <title>Identity App</title>
         <script src="Identity.js"></script> 
+        <link rel="stylesheet" type="text/css" href="/Visma.css">
     </head>
     <body>
+        <h1>Visma Identity App</h1>
+
         <div id="app"></div>
 
+        <div>
+            <button class="button" onclick="changeURI('visma-identity://confirm?source=netvisor&paymentnumber=102226')">Confirm</button>
+            <button class="button" onclick="changeURI('visma-identity://sign?source=vismasign&documentid=105ab44')">Sign</button>
+            <button class="button" onclick="changeURI('visma-identity://login?source=severa')">Login (Severa)</button>
+        </div>
+
         <script>
-            const uri = 'visma-identity://login?source=severa';
-            const identity = new IdentityApp(uri);
-            identity.parseURI();
-
-            const path = identity.getPath();
-            const parameters = identity.getParameters();
-
-            const app = document.getElementById('app');
-            app.innerHTML = `
-                <h1>Identity App</h1>
-                <p>Path: ${path}</p>
-                <ul>
-                    ${Object.entries(parameters).map(([key, value]) => `<li>${key}: ${value}</li>`).join('')}
-                </ul>
-            `;
+            
         </script>
     </body>
 </html>

@@ -1,0 +1,30 @@
+
+/* Add some styling for the webpage */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    margin-top: 30px;
+}
+
+#app {
+    margin: 20px;
+}
+
+/* Style for the buttons */
+.button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+}
+
+.button:hover {
+    background-color: #3e8e41;
+}

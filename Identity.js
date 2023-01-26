@@ -82,3 +82,27 @@ class IdentityApp {
         return params;
     }
 }
+
+let uri = '';
+            let identity;
+            
+
+            function updateDisplay() {
+                const path = identity.getPath();
+                const parameters = identity.getParameters();
+
+                const app = document.getElementById('app');
+                app.innerHTML = `
+                    <p>Path: ${path}</p>
+                    <ul>
+                        ${Object.entries(parameters).map(([key, value]) => `<li>${key}: ${value}</li>`).join('')}
+                    </ul>
+                `;
+            }
+
+function changeURI(newUri) {
+    uri = newUri;
+    identity = new IdentityApp(uri);
+    identity.parseURI();
+    updateDisplay();
+}
