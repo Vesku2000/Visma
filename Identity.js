@@ -3,24 +3,24 @@ class IdentityApp {
         this.uri = uri;
     }
 
-    // Method to parse and validate the URI
+    // Method to parse and validate url
     parseURI() {
-        // Regular expression to check the URI scheme
+        // Regular expression to check the url
         const schemeRegex = /^visma-identity:\/\//;
 
-        // Regular expression to check the allowed paths
+        // path options
         const pathRegex = /^(login|confirm|sign)/;
 
         // Check the URI scheme
         if (!schemeRegex.test(this.uri)) {
-            throw new Error('Invalid URI scheme');
+            throw new Error('Invalid URL');
         }
 
         // Check the path that it is correct 
         const path = this.uri.split('?')[0].replace('visma-identity://', '');
         //if path is not correct alert error
         if (!pathRegex.test(path)) {
-            throw new Error('Invalid path');
+            throw new Error('Path error');
         }
 
         // Check which path need to use
@@ -44,7 +44,7 @@ class IdentityApp {
     // Method to validate the parameters for the "login" path
     validateLoginParams(parameters) {
         const sourceRegex = /^source=[a-zA-Z]+$/;
-
+        //checking if there is something wrong chars
         if (!sourceRegex.test(parameters)) {
             throw new Error('Invalid parameters for login path');
         }
@@ -53,7 +53,7 @@ class IdentityApp {
     // Method to validate the parameters for the "confirm" path
     validateConfirmParams(parameters) {
         const confirmRegex = /^source=[a-zA-Z]+&paymentnumber=[0-9]+$/;
-
+        //checking if there is something wrong chars
         if (!confirmRegex.test(parameters)) {
             throw new Error('Invalid parameters for confirm path');
         }
@@ -62,18 +62,18 @@ class IdentityApp {
     // Method to validate the parameters for the "sign" path
     validateSignParams(parameters) {
         const signRegex = /^source=[a-zA-Z]+&documentid=[a-zA-Z0-9]+$/;
-
+        //checking if there is something wrong chars
         if (!signRegex.test(parameters)) {
             throw new Error('Invalid parameters for sign path');
         }
     }
 
-    // Method to return the path
+    // Mehtod to return path
     getPath() {
         return this.path;
     }
 
-    // Method to return the parameters as key-value pairs
+    // Method to return parameters with key values
     getParameters() {
         const params = {};
         this.parameters.split('&').forEach(param => {
@@ -84,27 +84,31 @@ class IdentityApp {
     }
 }
 
+
+//Define empty uri 
 let uri = '';
             let identity;
             
-
+            //functio to display path and keys
             function updateDisplay() {
                 const path = identity.getPath();
                 const parameters = identity.getParameters();
-
-                const app = document.getElementById('app');
-                app.innerHTML = `
+                //getting accces to div results
+                const results = document.getElementById('results');
+                //displaying content inside results div
+                results.innerHTML = `
                     <p>Path: ${path}</p>
                     <ul>
                         ${Object.entries(parameters).map(([key, value]) => `<li>${key}: ${value}</li>`).join('')}
                     </ul>
                 `;
             }
-
+            //functio that sets new path to uri variable
             function changeURI(newUri) {
                 uri = newUri;
+                //functio creates new object with that path
                 identity = new IdentityApp(uri);
-            
+                
                 try {
                     identity.parseURI();
                     updateDisplay();
