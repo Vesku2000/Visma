@@ -47,7 +47,7 @@ h1 {
     content: attr(data-uri);
     color: white;
     position: fixed; /* change position to fixed */
-    top: 46%;
+    top: 54%;
     left: 50%; /* center horizontally */
     transform: translate(-50%, 10%); /* center vertically and position lower on the page */
     background-color: #FAAB78;
